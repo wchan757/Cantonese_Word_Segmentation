@@ -1,36 +1,51 @@
 # Cantonese Word Segmentation
 
-It is a Cantonese dictionary for Cantonese word segmentation.You can use jieba and load this dictionary as custom dictionary to do the Cantonese word segmentation. 
+This repository offers a Cantonese dictionary specifically designed for enhancing Cantonese word segmentation. It allows the integration with the `jieba` segmentation library, enabling you to use it as a custom dictionary for Cantonese text processing.
 
-This Cantonese dictionary is developed through the following sources:
-1. https://www.reddit.com/r/Cantonese/comments/62i3ud/most_common_cantonese_words_frequency_list/
+## Sources
 
-2. https://words.hk/faiman/analysis/existingcharpronunciations/DATA
+The development of this Cantonese dictionary has been informed by the following resources:
 
-
-3. http://pycantonese.org/
-
-4. https://fasttext.cc/docs/en/pretrained-vectors.html
+- [Most Common Cantonese Words Frequency List](https://www.reddit.com/r/Cantonese/comments/62i3ud/most_common_cantonese_words_frequency_list/)
+- [Words.hk Faiman Analysis](https://words.hk/faiman/analysis/existingcharpronunciations/DATA)
+- [PyCantonese](http://pycantonese.org/)
+- [FastText Pretrained Vectors](https://fasttext.cc/docs/en/pretrained-vectors.html)
 
 ## Installation
 
-Download the file wordlist.txt
+To get started, download the dictionary file from the repository:
+
+```bash
+Download the file `wordlist.txt`
 ```
+
 ## Usage
+
+You can integrate this dictionary into your `jieba` processing workflow as follows:
+
+```python
 import jieba
 jieba.load_userdict('wordlist.txt')
-
-Performance: 
-1.'影相呃like真係一件好煩嘅事嚟㗎，不過呃like都唔一'
-my_dict : [影相, 呃like, 真係, 一件, 好煩, 嘅, 事, 嚟, 不過, 呃like, 都,...]
-jieba_dict: [影相, 呃, like, 真, 係, 一件, 好, 煩, 嘅, 事, 嚟, 㗎, ，...]
-
-2.'真係唔好怪人哋叫香港做投訴之都⋯⋯繼有餐廳
-my_dict : [真係, 唔好, 怪人, 哋, 叫, 香港, 做, 投訴, 之, 都, 繼, 有, 餐廳, ...]
-jieba_dict : [', 真, 係, 唔, 好, 怪人, 哋, 叫, 香港, 做, 投訴, 之, 都, ⋯,]
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Performance Comparison
 
-Please make sure to update tests as appropriate.
+Here are some examples demonstrating the improvements in segmentation when using this custom dictionary compared to the default `jieba` dictionary:
+
+1. **Example Sentence:**
+
+   `"影相呃like真係一件好煩嘅事嚟㗎，不過呃like都唔一"`
+
+   - **Custom Dictionary Output:**
+     `[影相, 呃like, 真係, 一件, 好煩, 嘅, 事, 嚟, 不過, 呃like, 都, ...]`
+   - **Jieba Default Dictionary Output:**
+     `[影相, 呃, like, 真, 係, 一件, 好, 煩, 嘅, 事, 嚟, 㗎, ...]`
+
+2. **Example Sentence:**
+
+   `"真係唔好怪人哋叫香港做投訴之都⋯⋯繼有餐廳"`
+
+   - **Custom Dictionary Output:**
+     `[真係, 唔好, 怪人, 哋, 叫, 香港, 做, 投訴, 之, 都, 繼, 有, 餐廳, ...]`
+   - **Jieba Default Dictionary Output:**
+     `[真, 係, 唔, 好, 怪人, 哋, 叫, 香港, 做, 投訴, 之, 都, ⋯⋯, ...]`
